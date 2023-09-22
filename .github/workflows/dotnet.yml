@@ -9,7 +9,6 @@ on:
 
 env:
   wowshop_image: '${{ secrets.DOCKER_HUB_USERNAME }}/wowshop'
-  wowshop_azure_name: ${{ env.AZURE_WEBAPP_NAME }}
 
 jobs:
   build:
