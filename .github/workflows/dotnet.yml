@@ -1,5 +1,5 @@
 
-name: Build .NET APP
+name: Build & deploy .NET APP
 
 on:
   push:
@@ -60,4 +60,5 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.AZURE_WEBAPP_WEBHOOK_URL }}
         shell: bash
+      
       
