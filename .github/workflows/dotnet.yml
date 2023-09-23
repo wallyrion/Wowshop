@@ -84,6 +84,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script:
             sudo docker pull ${{ env.wowshop_image}} && \
-            sudo docker stop wowshop || true && \
-            sudo docker rm wowshop || true && \
-            sudo docker run -d -p 5000:8080 --name wowshop ${{ env.wowshop_image }}
+            docker stop wowshop || true && \
+            docker rm wowshop || true && \
+            docker run -d -p 5000:8080 --name wowshop ${{ env.wowshop_image }}
