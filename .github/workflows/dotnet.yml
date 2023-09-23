@@ -63,3 +63,28 @@ jobs:
         shell: bash
       
       
+  deploy_to_VM:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'prod'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Log into Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - name: Pull the image to VM
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script:
+            docker pull {{ env.wowshop_image}}
+            docker stop wowshop || true
+            docker rm wowshop || true
+            docker run -d -p 5000:8080 --name wowshop {{ env.wowshop_image }}
+      
