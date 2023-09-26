@@ -35,7 +35,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       
     - name: Create Docker Image
-      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="docker.io" -p ContainerRepository="${{ wowshop_image }}"
+      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="docker.io" -p ContainerRepository="${{ env.wowshop_image }}"
 
     
   deploy:
