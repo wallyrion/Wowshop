@@ -44,7 +44,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Docker Image for github container registry
-      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="ghcr.io" -p ContainerRepository="wallyrion/wowshop"
+      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="ghcr.io" -p ContainerRepository="ghcr.io/wallyrion/wowshop"
 
     
   deploy:
