@@ -36,6 +36,15 @@ jobs:
       
     - name: Create Docker Image
       run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="docker.io" -p ContainerRepository="${{ env.wowshop_image }}"
+      
+    - name: Log in to GitHub container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Docker Image for github container registry
+      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="ghcr.io" -p ContainerRepository="wallyrion/wowshop"
 
     
   deploy:
