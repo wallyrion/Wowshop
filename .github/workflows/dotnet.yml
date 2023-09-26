@@ -37,6 +37,9 @@ jobs:
     - name: Create Docker Image
       run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64 -p ContainerRegistry="docker.io" -p ContainerRepository="${{ env.wowshop_image }}"
       
+    - name: logout docker
+      run: docker logout
+      
     - name: Log in to GitHub container registry
       uses: docker/login-action@v3
       with:
