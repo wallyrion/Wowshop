@@ -7,4 +7,7 @@
         <ContainerRepository>wowshop</ContainerRepository>
     </PropertyGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Wowshop.Tests" />
+    </ItemGroup>
 </Project>

@@ -1,14 +1,22 @@
+using System.Net;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Wowshop.Tests;
 
 public class SimpleTests
 {
 	[Fact]
-	public void Test()
+	public async Task SimpleIntegrationTest()
 	{
-		var result = "qqerty";
+		WebApplicationFactory<Program> factory = new();
 
-		result.Should().NotBeEmpty();
+		var httpClient = factory.CreateClient();
+
+		var response = await httpClient.GetAsync("/");
+		response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+		var responseContent = await response.Content.ReadAsStringAsync();
+		responseContent.Should().Be("Hello World!");
 	}
 }
