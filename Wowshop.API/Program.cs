@@ -8,6 +8,7 @@ app.MapGet("/", () =>
     return "Hello World!";
 });
 app.MapGet("goodbye", () => "Goodbye");
+app.MapGet("goodbye", () => "Goodbye");
 
 app.MapGet("/health", (IConfiguration configuration) => new
 {
