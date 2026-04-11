@@ -1,7 +1,8 @@
 
-name: Deploy my first wowapp
+name: Deploy my first wowapp to see that
 
 on:
+
   push:
     branches: [ "main" ]
 
