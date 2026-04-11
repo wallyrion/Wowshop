@@ -1,5 +1,5 @@
 
-name: Build
+name: Build the code
 
 on:
   pull_request:
@@ -23,7 +23,12 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore -c Release
-    - name: Test
-      run: dotnet test --no-build --verbosity normal -c Release
-    - name: Create Docker Image
-      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64
+  
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Test
+        run: dotnet test --no-build --verbosity normal -c Release
+      - name: Create Docker Image
+        run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64
