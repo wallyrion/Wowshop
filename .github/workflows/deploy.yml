@@ -1,11 +1,9 @@
 
-name: Deploy my first wowapp to see that
+name: Deploy
 
 on:
-
   push:
     branches: [ "main" ]
-
 
 env:
   wowshop_image: '${{ secrets.DOCKER_HUB_USERNAME }}/wowshop'
@@ -42,7 +40,7 @@ jobs:
 
     steps:
     - name: Create Docker Image
-      run: dotnet publish ./Wowshop.API/Wowshop.API.csproj /t:PublishContainer -r linux-x64
+      run: dotnet publish .Wowshop.API\Wowshop.API.csproj /t:PublishContainer -r linux-x64
     - name: change image tag
       run: docker tag wowshop ${{ env.wowshop_image }}
     - name: Login to Docker Hub

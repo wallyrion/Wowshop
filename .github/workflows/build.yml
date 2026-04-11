@@ -1,5 +1,5 @@
 
-name: Build
+name: Build the code
 
 on:
   pull_request:
