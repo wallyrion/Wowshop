@@ -1,9 +1,10 @@
 
-name: Deploy
+name: Deploy my first wowapp
 
 on:
   push:
     branches: [ "main" ]
+
 
 env:
   wowshop_image: '${{ secrets.DOCKER_HUB_USERNAME }}/wowshop'
